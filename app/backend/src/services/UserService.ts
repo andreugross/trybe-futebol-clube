@@ -1,7 +1,7 @@
 import { compareSync } from 'bcryptjs';
-import ILogin from '../interfaces/loginInterface';
+import ILogin from '../interfaces/ILogin';
 import User from '../database/models/User';
-import IUser from '../interfaces/userInterface';
+import IUser from '../interfaces/IUser';
 import { createToken, validateToken } from '../utils/generateToken';
 
 export default class UserService {

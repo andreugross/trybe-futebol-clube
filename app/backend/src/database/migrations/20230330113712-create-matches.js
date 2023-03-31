@@ -12,11 +12,11 @@ module.exports = {
         foreignKey: true,
         type: Sequelize.INTEGER,
         references: {
-          model: {
-            tableName: 'teams',
-          },
-          key: 'id'
-        }
+          model: 'teams',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       home_team_goals: {
         allowNull: false,
@@ -27,11 +27,11 @@ module.exports = {
         foreignKey: true,
         type: Sequelize.INTEGER,
         references: {
-          model: {
-            tableName: 'teams',
-          },
-          key: 'id'
-        }
+          model: 'teams',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       away_team_goals: {
         allowNull: false,
