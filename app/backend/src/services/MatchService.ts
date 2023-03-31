@@ -6,21 +6,24 @@ export default class MatchService {
     private _matchModel: typeof Match,
   ) {}
 
-  getAllMatches = async () => {
+  async getAllMatches(): Promise<Match[]> {
     const matches = await this._matchModel.findAll({
       include: [
-        {
-          model: Team,
-          association: 'homeTeam',
-          attributes: ['teamName'],
-        },
-        {
-          model: Team,
-          association: 'awayTeam',
-          attributes: ['teamName'],
-        },
+        { model: Team, association: 'homeTeam', attributes: ['teamName'] },
+        { model: Team, association: 'awayTeam', attributes: ['teamName'] },
       ],
     });
     return matches;
-  };
+  }
+
+  async getMatchesByProgress(inProgress: boolean): Promise<Match[]> {
+    const matches = await this._matchModel.findAll({
+      where: { inProgress },
+      include: [
+        { model: Team, association: 'homeTeam', attributes: ['teamName'] },
+        { model: Team, association: 'awayTeam', attributes: ['teamName'] },
+      ],
+    });
+    return matches;
+  }
 }
