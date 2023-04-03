@@ -12,5 +12,7 @@ matchRouter.patch('/:id/finish', tokenValidation, (req: Request, res: Response) 
   match.matchFinisher(req, res));
 matchRouter.patch('/:id', tokenValidation, (req: Request, res: Response) =>
   match.matchUpdate(req, res));
+matchRouter.post('/', tokenValidation, (req: Request, res: Response) =>
+  match.matchcreate(req, res));
 
 export default matchRouter;

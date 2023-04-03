@@ -1,3 +1,4 @@
+import IMatch from '../interfaces/IMatch';
 import Match from '../database/models/Match';
 import Team from '../database/models/Team';
 
@@ -39,5 +40,21 @@ export default class MatchService {
     const [match] = await this._matchModel
       .update({ homeTeamGoals: homeTeam, awayTeamGoals: awayTeam }, { where: { id } });
     return match;
+  }
+
+  async matchCreate(match: IMatch): Promise<IMatch | null> {
+    const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals, inProgress } = match;
+    if (inProgress === true) {
+      return null;
+    }
+    const newMatch = await this._matchModel.create({
+      homeTeamId,
+      homeTeamGoals,
+      awayTeamId,
+      awayTeamGoals,
+      inProgress,
+    });
+
+    return newMatch as unknown as IMatch;
   }
 }
