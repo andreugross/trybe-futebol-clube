@@ -10,5 +10,7 @@ const matchRouter = Router();
 matchRouter.get('/', (req: Request, res: Response) => match.getAllMatches(req, res));
 matchRouter.patch('/:id/finish', tokenValidation, (req: Request, res: Response) =>
   match.matchFinisher(req, res));
+matchRouter.patch('/:id', tokenValidation, (req: Request, res: Response) =>
+  match.matchUpdate(req, res));
 
 export default matchRouter;
