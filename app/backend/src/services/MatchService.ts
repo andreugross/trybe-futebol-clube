@@ -26,4 +26,12 @@ export default class MatchService {
     });
     return matches;
   }
+
+  async matchFinisher(id: number): Promise<number> {
+    const [match] = await this._matchModel.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+    return match;
+  }
 }

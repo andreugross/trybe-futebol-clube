@@ -19,7 +19,6 @@ export default class UserService {
     if (!decode) return null;
 
     const { id, username, role, email } = user;
-
     const token = createToken(email);
 
     return {
@@ -32,7 +31,6 @@ export default class UserService {
     const { email } = validateToken(authorization);
     const user = await this._userModel.findOne({ where: { email }, raw: true });
     if (!user) return null;
-    console.log('LOG DE USER', user);
     return user;
   }
 }
